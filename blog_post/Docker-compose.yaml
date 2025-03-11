@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  crudapi:
+    build: .
+    container_name: crudapi_application
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: apple
+      POSTGRES_USER: postgres
+      POSTGRES_DB: blog_post
+    healthcheck:
+      test: ["CMD", "psql", "-U", "root"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+volumes: 
+  postgres_data:
+    external: true
