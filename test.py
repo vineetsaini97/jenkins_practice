@@ -1,2 +1,1 @@
-print ("hello world!v6")
-print;
+print (34567890p[)
